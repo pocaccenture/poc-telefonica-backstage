@@ -155,7 +155,7 @@ spec:
           - github.com
         description: This is ${{ parameters.bucket }}
         repoUrl: github.com?owner=pocacc&repo=${{ parameters.bucket }}
-        RepoVisibility: public
+        repoVisibility: public
         branchName: main
 
   output:
