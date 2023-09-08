@@ -129,6 +129,7 @@ spec:
         url: .
         values:
           name: ${{ parameters.name }}
+          bucket: ${{ parameters.name }}
           force_destroy: ${{ parameters.forcedestroy }}
           acl: ${{ parameters.acl}}
           email: ${{ parameters.email }}
@@ -144,6 +145,7 @@ spec:
         url: ./terraform.tfvars
         values:
           name: ${{ parameters.name }}
+          bucket: ${{ parameters.name }}
           forcedestroy: ${{ parameters.forcedestroy }}
           acl: ${{ parameters.acl }}
           email: ${{ parameters.email }}
