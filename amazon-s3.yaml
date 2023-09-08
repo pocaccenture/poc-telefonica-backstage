@@ -117,16 +117,14 @@ spec:
           - "privado"
           - "público"
 steps:
-  - id: fetch
-    name: Template S3 Terraform
-    action: fetch:template
+  - id: publish
+    name: Publish
+    action: publish:github
     input:
-      url: ./
-      values:
-        name: ${{ parameters.bucket }}
-        force_destroy: ${{ parameters.force_destroy }}
-        acl: ${{ parameters.acl}}
-        email: ${{ parameters.email }}
+      allowedHosts:
+        - github.com
+      description: This is ${{ parameters.name }}
+      repoUrl: ${{ parameters.repoUrl }}
   - id: register
     name: Register
     action: catalog:register
