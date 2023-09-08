@@ -161,13 +161,10 @@ steps:
       owner: pocapp
       repo: pocapp
       path: ./
-      co`ntent: |-
+      content: |-
         name=${{ parameters.name }}
         force_destroy=${{ parameters.force_destroy }}
         acl=${{ parameters.acl }}
-        # O conteúdo anterior do arquivo (se houver) começa aqui.
-      message: Criando arquivo: "terraform.tfvars"
-
 output:
   links:
     - title: Repository
