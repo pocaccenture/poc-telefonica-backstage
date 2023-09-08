@@ -91,7 +91,7 @@ spec:
           - Oeste dos EUA (Oregon) - us-west-2
   - title: Defina as configurações do ambiente
     properties:
-      Bucket:
+      bucket:
         title: Nome do bucket
         type: string
         description: O nome do bucket é único e global
@@ -129,7 +129,6 @@ spec:
         url: .
         values:
           email: ${{ parameters.email }}
-          name: ${{ parameters.name }}
           bucket: ${{ parameters.bucket }}
           force_destroy: ${{ parameters.forcedestroy }}
           acl: ${{ parameters.acl}}
@@ -144,7 +143,6 @@ spec:
       input:
         url: ./terraform.tfvars
         values:
-          name: ${{ parameters.name }}
           email: ${{ parameters.email }}
           forcedestroy: ${{ parameters.forcedestroy }}
           acl: ${{ parameters.acl }}
@@ -156,7 +154,7 @@ spec:
         allowedHosts:
           - github.com
         description: This is ${{ parameters.name }}
-        repoUrl: github.com?owner=pocacc&repo=${{ parameters.name }}
+        repoUrl: github.com?owner=pocacc&repo=${{ parameters.bucket }}
         branchName: main
 
   output:
