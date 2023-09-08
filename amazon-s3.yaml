@@ -91,7 +91,7 @@ spec:
           - Oeste dos EUA (Oregon) - us-west-2
   - title: Defina as configurações do ambiente
     properties:
-      name:
+      bucket:
         title: Nome do bucket
         type: string
         description: O nome do bucket é único e global
@@ -128,7 +128,7 @@ spec:
       input:
         url: .
         values:
-          name: ${{ parameters.name }}
+          bucket: ${{ parameters.bucket }}
           force_destroy: ${{ parameters.forcedestroy }}
           acl: ${{ parameters.acl}}
           email: ${{ parameters.email }}
@@ -143,7 +143,7 @@ spec:
       input:
         url: ./terraform.tfvars
         values:
-          bucket: ${{ parameters.name }}
+          bucket: ${{ parameters.bucket }}
           forcedestroy: ${{ parameters.forcedestroy }}
           acl: ${{ parameters.acl }}
           email: ${{ parameters.email }}
