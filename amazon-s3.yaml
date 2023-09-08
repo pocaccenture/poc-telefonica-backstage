@@ -141,18 +141,6 @@ steps:
     input:
       repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
       catalogInfoPath: /catalog-info.yaml
-  - id: create-github-file
-    name: Criar arquivo terraform.tfvars no GitHub
-    action: fetch:template
-    input:
-      owner: pocapp
-      repo: pocapp
-      path: ./
-      url: .
-      values:
-        name: ${{ parameters.bucket }}
-        force_destroy: ${{ parameters.force_destroy }}
-        acl: ${{ parameters.acl}}
   output:
     links:
       - title: Repository
