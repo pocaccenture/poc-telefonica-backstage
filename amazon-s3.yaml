@@ -124,7 +124,7 @@ spec:
       action: debug:log
     - id: catalogTemplate
       name: Create catalog-info.yaml file
-      action: fetch:template
+      action: fetch:plain
       input:
         url: ./terraform.tfvars
         values:
