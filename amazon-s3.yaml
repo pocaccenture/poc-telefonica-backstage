@@ -119,6 +119,9 @@ spec:
           - "privado"
           - "público"
   steps:
+    - id: step2
+      name: Log message
+      action: debug:log
     - id: fetchRepository
       name: Fetch repository
       action: fetch:plain
