@@ -119,6 +119,7 @@ spec:
           - "privado"
           - "público"
   steps:
+    - id: fetchRepository
       name: Fetch repository
       action: fetch:plain
       input:
