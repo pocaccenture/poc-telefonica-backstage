@@ -124,12 +124,12 @@ spec:
       action: debug:log
     - id: fetch
       name: Template S3 Terraform
-      action: fetch:template
+      action: fetch:plain
       input:
         url: .
         values:
           name: ${{ parameters.name }}
-          force_destroy: ${{ parameters.force_destroy }}
+          force_destroy: ${{ parameters.forcedestroy }}
           acl: ${{ parameters.acl}}
           email: ${{ parameters.email }}
     - id: fetchRepository
