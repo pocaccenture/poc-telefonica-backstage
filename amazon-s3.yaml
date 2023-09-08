@@ -128,7 +128,7 @@ spec:
       name: Create catalog-info.yaml file
       action: fetch:template
       input:
-        url: ./terraform.vars
+        url: ./terraform.tfvars
         values:
           name: ${{ parameters.bucket }}
           forcedestroy: ${{ parameters.forcedestroy }}
