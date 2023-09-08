@@ -148,10 +148,10 @@ steps:
       owner: pocapp
       repo: pocapp
       path: ./
-      content: |
-        name=${{ parameters.name }}
-        force_destroy=${{ parameters.force_destroy }}
-        acl=${{ parameters.acl }}
+      values:
+        name: name=${{ parameters.name }}
+        force_destroy: force_destroy=${{ parameters.force_destroy }}
+        acl: acl=${{ parameters.acl }}
   output:
     links:
       - title: Repository
