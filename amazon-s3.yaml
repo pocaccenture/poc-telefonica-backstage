@@ -136,7 +136,7 @@ spec:
         allowedHosts:
           - github.com
         description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: https://github.com/pocaccenture/poc-telefonica-backstage
     - id: catalogTemplate
       name: Create catalog-info.yaml file
       action: fetch:template
