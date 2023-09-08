@@ -129,7 +129,7 @@ spec:
         repoUrl: github.com?owner=pocacc&repo=${{ parameters.nome }}
     - id: catalogTemplate
       name: Create catalog-info.yaml file
-      action: debug:log
+      action: fetch:plain
       input:
         url: ./terraform.vars
         values:
