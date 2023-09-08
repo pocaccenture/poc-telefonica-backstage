@@ -124,7 +124,7 @@ steps:
         url: .
         values:
           name: ${{ parameters.bucket }}
-          force_destroy: ${{ parameters.force_destroy }}
+          forcedestroy: ${{ parameters.force_destroy }}
           acl: ${{ parameters.acl}}
           email: ${{ parameters.email }}
     - id: publish
@@ -142,7 +142,7 @@ steps:
         url: ./terraform.vars
         values:
           name: ${{ parameters.bucket }}
-          force_destroy: ${{ parameters.force_destroy }}
+          forcedestroy: ${{ parameters.force_destroy }}
           acl: ${{ parameters.acl }}
           email: ${{ parameters.email }}
     output:
