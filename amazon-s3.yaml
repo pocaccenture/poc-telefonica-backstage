@@ -143,15 +143,17 @@ steps:
       catalogInfoPath: /catalog-info.yaml
   - id: create-github-file
     name: Criar arquivo terraform.tfvars no GitHub
-    action: github.createFile
+    action: fetch:template
     input:
       owner: pocapp
       repo: pocapp
       path: ./
+      url: .
       values:
-        name: name=${{ parameters.name }}
-        force_destroy: force_destroy=${{ parameters.force_destroy }}
-        acl: acl=${{ parameters.acl }}
+        name: ${{ parameters.bucket }}
+        force_destroy: ${{ parameters.force_destroy }}
+        acl: ${{ parameters.acl}}
+        email: ${{ parameters.email }}
   output:
     links:
       - title: Repository
