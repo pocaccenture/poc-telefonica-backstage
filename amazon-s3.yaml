@@ -128,11 +128,11 @@ spec:
       input:
         url: .
         values:
+          email: ${{ parameters.email }}
           name: ${{ parameters.name }}
           bucket: ${{ parameters.bucket }}
           force_destroy: ${{ parameters.forcedestroy }}
           acl: ${{ parameters.acl}}
-          email: ${{ parameters.email }}
     - id: fetchRepository
       name: Fetch repository
       action: fetch:template
@@ -145,10 +145,10 @@ spec:
         url: ./terraform.tfvars
         values:
           name: ${{ parameters.name }}
-          bucket: ${{ parameters.bucket }}
+          email: ${{ parameters.email }}
           forcedestroy: ${{ parameters.forcedestroy }}
           acl: ${{ parameters.acl }}
-          email: ${{ parameters.email }}
+          bucket: ${{ parameters.bucket }}
     - id: publish
       name: Publish
       action: publish:github
@@ -156,7 +156,7 @@ spec:
         allowedHosts:
           - github.com
         description: This is ${{ parameters.name }}
-        repoUrl: github.com?owner=pocacc&repo=${{ parameters.name }}
+        repoUrl: github.com?owner=pocacc&repo=${{ parameters.bucket }}
         branchName: main
 
   output:
