@@ -117,41 +117,41 @@ spec:
           - "privado"
           - "público"
 steps:
-    - id: fetch
-      name: Template S3 Terraform
-      action: fetch:template
-      input:
-        url: .
-        values:
-          name: ${{ parameters.bucket }}
-          forcedestroy: ${{ parameters.force_destroy }}
-          acl: ${{ parameters.acl}}
-          email: ${{ parameters.email }}
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts:
-          - github.com
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
-    - id: catalogTemplate
-      name: Create catalog-info.yaml file
-      action: fetch:template
-      input:
-        url: ./terraform.vars
-        values:
-          name: ${{ parameters.bucket }}
-          forcedestroy: ${{ parameters.force_destroy }}
-          acl: ${{ parameters.acl }}
-          email: ${{ parameters.email }}
-  output:
-    links:
-      - title: Repository
-        url: ${{ steps.publish.output.remoteUrl }}
-      - title: Open in catalog
-        icon: catalog
-        entityRef: ${{ steps.register.output.entityRef }}
+  - id: fetch
+    name: Template S3 Terraform
+    action: fetch:template
+    input:
+      url: .
+      values:
+        name: ${{ parameters.bucket }}
+        forcedestroy: ${{ parameters.force_destroy }}
+        acl: ${{ parameters.acl}}
+        email: ${{ parameters.email }}
+  - id: publish
+    name: Publish
+    action: publish:github
+    input:
+      allowedHosts:
+        - github.com
+      description: This is ${{ parameters.name }}
+      repoUrl: ${{ parameters.repoUrl }}
+  - id: catalogTemplate
+    name: Create catalog-info.yaml file
+    action: fetch:template
+    input:
+      url: ./terraform.vars
+      values:
+        name: ${{ parameters.bucket }}
+        forcedestroy: ${{ parameters.force_destroy }}
+        acl: ${{ parameters.acl }}
+        email: ${{ parameters.email }}
+output:
+  links:
+    - title: Repository
+      url: ${{ steps.publish.output.remoteUrl }}
+    - title: Open in catalog
+      icon: catalog
+      entityRef: ${{ steps.register.output.entityRef }}
 
 
 
