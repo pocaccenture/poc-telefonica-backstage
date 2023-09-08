@@ -116,17 +116,6 @@ spec:
         enumNames:
           - "privado"
           - "público"
-  - title: Localização do seu repositório
-    required:
-      - repoUrl
-    properties:
-      repoUrl:
-        title: Repositório
-        type: string
-        ui:field: RepoUrlPicker
-        ui:options:
-          allowedHosts:
-            - github.com
 
 steps:
   - id: fetch
