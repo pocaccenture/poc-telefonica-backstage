@@ -116,39 +116,44 @@ spec:
         enumNames:
           - "privado"
           - "público"
-steps:
-  - id: fetch
-    name: Template S3 Terraform
-    action: fetch:template
-    input:
-      url: .
-      values:
-        name: ${{ parameters.bucket }}
-        force_destroy: ${{ parameters.force_destroy }}
-        acl: ${{ parameters.acl}}
-        email: ${{ parameters.email }}
-  - id: publish
-    name: Publish
-    action: publish:github
-    input:
-      allowedHosts:
-        - github.com
-      description: This is ${{ parameters.name }}
-      repoUrl: ${{ parameters.repoUrl }}
-  - id: register
-    name: Register
-    action: catalog:register
-    input:
-      repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-      catalogInfoPath: /catalog-info.yaml
-  - id: create-github-file
-    name: Criar arquivo terraform.tfvars no GitHub
-    action: github.createFile
-    input:
-      owner: pocapp
-      repo: pocapp
-      path: ./
-      content: |-
-        name=${{ parameters.name }}
-        force_destroy=${{ parameters.force_destroy }}
-        acl=${{ parameters.acl }}
+# here's the steps that are executed in series in the scaffolder backend
+  steps:
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        url: ./template
+        values:
+          name: ${{ parameters.name }}
+          owner: ${{ parameters.owner }}
+
+    - id: fetch-docs
+      name: Fetch Docs
+      action: fetch:plain
+      input:
+        targetPath: ./community
+        url: https://github.com/backstage/community/tree/main/backstage-community-sessions
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+
+  # some outputs which are saved along with the job for use in the frontend
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
