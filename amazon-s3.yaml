@@ -123,10 +123,10 @@ steps:
     input:
       url: .
       values:
-      name: ${{ parameters.bucket }}
-      force_destroy: ${{ parameters.force_destroy }}
-      acl: ${{ parameters.acl}}
-      email: ${{ parameters.email }}
+        name: ${{ parameters.bucket }}
+        force_destroy: ${{ parameters.force_destroy }}
+        acl: ${{ parameters.acl}}
+        email: ${{ parameters.email }}
   - id: publish
     name: Publish
     action: publish:github
@@ -151,7 +151,6 @@ steps:
       content: |-
         name=${{ parameters.name }}
         force_destroy=${{ parameters.force_destroy }}
-        acl=${{ parameters.acl }}
   output:
     links:
       - title: Repository
