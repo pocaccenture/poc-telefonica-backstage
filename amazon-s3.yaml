@@ -119,24 +119,34 @@ spec:
           - "privado"
           - "público"
   steps:
+    - id: fetch
+      name: Template S3 Terraform
+      action: fetch:template
+      input:
+        url: .
+        values:
+          name: ${{ parameters.bucket }}
+          forcedestroy: ${{ parameters.forcedestroy }}
+          acl: ${{ parameters.acl}}
+          email: ${{ parameters.email }}
     - id: publish
       name: Publish
       action: publish:github
       input:
         allowedHosts:
           - github.com
-        description: This is ${{ parameters.nome }}
-        repoUrl: github.com?owner=pocacc&repo=${{ parameters.nome }}
-    - id: catalogTemplate
-      name: Create catalog-info.yaml file
-      action: fetch:template
-      input:
-        url: ./terraform.vars
-        values:
-          name: ${{ parameters.bucket }}
-          forcedestroy: ${{ parameters.forcedestroy }}
-          acl: ${{ parameters.acl }}
-          email: ${{ parameters.email }}
+        description: This is ${{ parameters.name }}
+        repoUrl: github.com?owner=pocacc&repo=cocoloco
+ #   - id: catalogTemplate
+ #     name: Create catalog-info.yaml file
+ #     action: fetch:template
+ #     input:
+ #       url: ./terraform.vars
+ #       values:
+ #         name: ${{ parameters.bucket }}
+ #         forcedestroy: ${{ parameters.forcedestroy }}
+ #         acl: ${{ parameters.acl }}
+ #         email: ${{ parameters.email }}
   output:
     links:
       - title: Repository
