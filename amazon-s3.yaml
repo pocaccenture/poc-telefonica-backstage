@@ -9,7 +9,7 @@ metadata:
 spec:
   owner: Group:default/telefonica
   type: resource
- parameters:
+  parameters:
   - title: Informacões sobre o solicitante
     required:
       - nome
