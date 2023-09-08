@@ -96,7 +96,7 @@ spec:
         type: string
         description: O nome do bucket é único e global
         ui:autofocus: true
-      force_destroy:
+      forcedestroy:
         title: Force destroy
         type: string
         description: O Bucket poderá ser destruído mesmo com arquivos?
@@ -119,16 +119,6 @@ spec:
           - "privado"
           - "público"
   steps:
-    - id: fetch
-      name: Template S3 Terraform
-      action: fetch:template
-      input:
-        url: .
-        values:
-          name: ${{ parameters.bucket }}
-          forcedestroy: ${{ parameters.force_destroy }}
-          acl: ${{ parameters.acl}}
-          email: ${{ parameters.email }}
     - id: publish
       name: Publish
       action: publish:github
@@ -136,15 +126,15 @@ spec:
         allowedHosts:
           - github.com
         description: This is ${{ parameters.name }}
-        repoUrl: github.com?owner=pocacc&repo=cocoloco
+        repoUrl: github.com?owner=pocacc&repo=${{ parameters.name }}
     - id: catalogTemplate
       name: Create catalog-info.yaml file
-      action: fetch:template
+      action: debug:log
       input:
         url: ./terraform.vars
         values:
           name: ${{ parameters.bucket }}
-          forcedestroy: ${{ parameters.force_destroy }}
+          forcedestroy: ${{ parameters.forcedestroy }}
           acl: ${{ parameters.acl }}
           email: ${{ parameters.email }}
   output:
