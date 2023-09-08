@@ -1,4 +1,4 @@
-name=${{ values.bucket }}
+bucket=${{ values.bucket }}
 forcedestroy=${{ values.force_destroy }}
 acl=${{ values.acl }}
 email=${{ values.email }}
