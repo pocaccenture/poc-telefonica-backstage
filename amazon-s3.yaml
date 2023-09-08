@@ -137,16 +137,16 @@ spec:
           - github.com
         description: This is ${{ parameters.name }}
         repoUrl: github.com?owner=pocacc&repo=cocoloco
- #   - id: catalogTemplate
- #     name: Create catalog-info.yaml file
- #     action: fetch:template
- #     input:
- #       url: ./terraform.vars
- #       values:
- #         name: ${{ parameters.bucket }}
- #         forcedestroy: ${{ parameters.forcedestroy }}
- #         acl: ${{ parameters.acl }}
- #         email: ${{ parameters.email }}
+    - id: catalogTemplate
+      name: Create catalog-info.yaml file
+      action: fetch:template
+      input:
+        url: ./terraform.vars
+        values:
+          name: ${{ parameters.bucket }}
+          forcedestroy: ${{ parameters.forcedestroy }}
+          acl: ${{ parameters.acl }}
+          email: ${{ parameters.email }}
   output:
     links:
       - title: Repository
