@@ -119,6 +119,10 @@ spec:
           - "privado"
           - "público"
   steps:
+      name: Fetch repository
+      action: fetch:plain
+      input:
+        url: https://github.com/pocacc/aws-s3-tf
     - id: catalogTemplate
       name: Create catalog-info.yaml file
       action: fetch:template
